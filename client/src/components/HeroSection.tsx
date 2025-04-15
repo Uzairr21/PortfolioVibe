@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { profileData } from "@/data/profileData";
+import { profileData } from "../data/profileData";
 import { Github, Linkedin, Twitter, Dribbble, FileText } from "lucide-react";
 
 export function HeroSection() {
@@ -15,7 +15,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="pt-20 pb-16 bg-background h-[100vh] max-h-[900px] flex items-center"
+      className="pt-24 md:pt-32 pb-16 bg-background min-h-[90vh] flex items-center"
     >
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center md:space-x-12">

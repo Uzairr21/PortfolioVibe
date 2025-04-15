@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { profileData } from "@/data/profileData";
+import { profileData } from "../data/profileData";
+import { cn } from "../lib/utils";
+import { TechCarousel } from "./TechCarousel";
 
 export function AboutSection() {
   const { about, technologies } = profileData;
@@ -86,20 +88,20 @@ export function AboutSection() {
               <h3 className="text-xl font-poppins font-bold mb-4">
                 Technologies I work with:
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {technologies.map((tech, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-center bg-background p-4 rounded-lg"
-                    variants={itemVariants}
-                  >
-                    <span
-                      className="text-accent mr-3 text-xl"
-                      dangerouslySetInnerHTML={{ __html: tech.icon }}
-                    ></span>
-                    <span>{tech.name}</span>
-                  </motion.div>
-                ))}
+              <div className="overflow-hidden">
+                {/* Carousel row 1 - moving left */}
+                <TechCarousel
+                  items={technologies.slice(0, Math.ceil(technologies.length / 2))}
+                  direction="left"
+                  speed="normal"
+                />
+                
+                {/* Carousel row 2 - moving right */}
+                <TechCarousel
+                  items={technologies.slice(Math.ceil(technologies.length / 2))}
+                  direction="right"
+                  speed="normal"
+                />
               </div>
             </motion.div>
           </motion.div>

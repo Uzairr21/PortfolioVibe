@@ -29,21 +29,21 @@ export function HeroSection() {
             <div className="mx-auto max-w-md relative group">
               {/* Circular background container with accent/brand color */}
               <div className="absolute inset-0 rounded-full bg-accent/10 dark:bg-accent/20 transform scale-105"></div>
-              
-              {/* White circular border */}
-              <div className="absolute inset-0 rounded-full border-[6px] border-white dark:border-white/90 transform scale-105"></div>
-              
+
+              {/* Orange circular border */}
+              <div className="absolute inset-0 rounded-full border-[6px] border-accent transform scale-105"></div>
+
               {/* Image container */}
               <div className="rounded-full overflow-hidden aspect-square flex items-center justify-center bg-background relative z-10">
                 <img
-                  src="/attached_assets/Uzair's Headshot Background Removed.png"
+                  src="/assets/uzair-headshot.png"
                   alt={`${name}'s professional portrait`}
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              
-              {/* Glow effect on hover */}
-              <div className="absolute -inset-2 rounded-full bg-accent/30 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-500 z-0"></div>
+
+              {/* Permanent soft glow effect with enhanced hover */}
+              <div className="absolute -inset-2 rounded-full bg-accent/30 blur-lg opacity-40 group-hover:opacity-70 transition-opacity duration-500 z-0"></div>
             </div>
           </motion.div>
 
@@ -71,8 +71,8 @@ export function HeroSection() {
               <a href="#contact" className="btn-secondary">
                 Contact Me
               </a>
-              <a 
-                href="/assets/resume.pdf" 
+              <a
+                href="/assets/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary flex items-center gap-2"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,8 +29,8 @@ export function Header() {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <a href="#" className="text-2xl font-poppins font-bold">
-          <span className="text-accent">Port</span>
-          <span>folio</span>
+          <span className="text-accent">Uzair</span>
+          <span> Shaikh</span>
         </a>
 
         {/* Desktop Navigation */}

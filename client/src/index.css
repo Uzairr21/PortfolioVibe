@@ -126,7 +126,7 @@
   
   .btn-secondary {
     @apply px-6 py-3 border-2 border-accent text-accent font-medium rounded-md transition-all;
-    @apply hover:bg-accent hover:bg-opacity-10 hover:shadow-lg hover:scale-105;
+    @apply hover:bg-accent hover:text-white hover:shadow-lg hover:scale-105;
     @apply hover:shadow-accent/20 active:scale-95;
   }
   

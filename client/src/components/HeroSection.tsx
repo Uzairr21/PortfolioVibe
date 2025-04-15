@@ -36,9 +36,9 @@ export function HeroSection() {
               {/* Image container */}
               <div className="rounded-full overflow-hidden aspect-square flex items-center justify-center bg-background relative z-10">
                 <img
-                  src="/assets/uzair-headshot.png"
+                  src="/attached_assets/Uzair's Headshot Background Removed.png"
                   alt={`${name}'s professional portrait`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               

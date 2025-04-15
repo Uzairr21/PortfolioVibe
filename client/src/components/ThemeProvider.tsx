@@ -5,12 +5,14 @@ type Theme = "dark" | "light";
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
+  toggleTheme: () => void;
 }
 
 // Create the context with a default value to avoid undefined
 export const ThemeContext = createContext<ThemeContextType>({
   theme: "dark",
   setTheme: () => null,
+  toggleTheme: () => null,
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -31,9 +33,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       }
     }
     
-    // Default to light theme
-    return "light";
+    // Default to dark theme
+    return "dark";
   });
+  
+  // Function to toggle between light and dark themes
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === "light" ? "dark" : "light");
+  };
 
   useEffect(() => {
     // Only run in client-side environment

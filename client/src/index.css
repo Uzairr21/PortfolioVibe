@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,77 +6,81 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
+    --background: 0 0% 100%; /* white */
+    --foreground: 222 47% 11%; /* navy blue */
     
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 222 47% 11%;
     
-    --card: 245 245 245; /* #F5F5F5 */
-    --card-foreground: 222.2 47.4% 11.2%;
+    --card: 0 0% 98%;
+    --card-foreground: 222 47% 11%;
     
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     
-    --primary: 15 100% 55%; /* #FF5722 orange */
-    --primary-foreground: 0 0% 100%; /* white text on orange */
+    --primary: 222 47% 11%; /* navy blue */
+    --primary-foreground: 0 0% 100%; /* white text */
     
-    --secondary: 0 0% 96.1%; /* #F5F5F5 off-white */
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
     
-    --accent: 15 100% 55%; /* #FF5722 orange */
+    --accent: 25 95% 53%; /* orange FF5722 */
     --accent-foreground: 0 0% 100%; /* white text on orange */
     
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
     
-    --ring: 15 100% 55%; /* #FF5722 orange */
+    --ring: 25 95% 53%; /* orange */
     
     --radius: 0.5rem;
   }
   
   .dark {
-    --background: 222.2 47.4% 11.2%; /* #121212 rich black */
-    --foreground: 0 0% 100%; /* white text */
+    --background: 222 47% 11%; /* navy blue #0D2644 */
+    --foreground: 0 0% 98%; /* white text */
     
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
     
-    --popover: 222.2 47.4% 11.2%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 98%;
     
-    --card: 12 12 12; /* #1F1F1F soft black */
-    --card-foreground: 0 0% 100%;
+    --card: 222 47% 14%;
+    --card-foreground: 0 0% 98%;
     
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 222 47% 16%;
+    --input: 222 47% 16%;
     
-    --primary: 15 100% 55%; /* #FF5722 orange */
-    --primary-foreground: 0 0% 100%; /* white text on orange */
+    --primary: 0 0% 98%; /* white */
+    --primary-foreground: 222 47% 11%;
     
-    --secondary: 12 12 12; /* #1F1F1F soft black */
-    --secondary-foreground: 0 0% 100%; /* white text */
+    --secondary: 222 47% 16%;
+    --secondary-foreground: 0 0% 98%;
     
-    --accent: 15 100% 55%; /* #FF5722 orange */
+    --accent: 25 95% 53%; /* orange FF5722 */
     --accent-foreground: 0 0% 100%; /* white text on orange */
     
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     
-    --ring: 15 100% 55%; /* #FF5722 orange */
+    --ring: 25 95% 53%; /* orange */
   }
   
   * {
     @apply border-border;
   }
   
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {

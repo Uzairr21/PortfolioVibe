@@ -36,17 +36,27 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
+    // Only run in client-side environment
+    if (typeof window === "undefined") return;
+
     // Update the document class when theme changes
     const root = window.document.documentElement;
     
     if (theme === "dark") {
       root.classList.add("dark");
+      root.classList.remove("light");
+      document.body.style.colorScheme = "dark";
     } else {
+      root.classList.add("light");
       root.classList.remove("dark");
+      document.body.style.colorScheme = "light";
     }
     
     // Save to localStorage
     localStorage.setItem("theme", theme);
+    
+    // Log theme change for debugging
+    console.log("Theme changed to:", theme);
   }, [theme]);
 
   return (

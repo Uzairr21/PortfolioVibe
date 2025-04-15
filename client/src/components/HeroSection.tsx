@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { profileData } from "@/data/profileData";
-import { Github, Linkedin, Twitter, Dribbble } from "lucide-react";
+import { Github, Linkedin, Twitter, Dribbble, FileText } from "lucide-react";
 
 export function HeroSection() {
   const { name, title, summary, socialLinks } = profileData;
@@ -26,12 +26,14 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="relative aspect-square overflow-hidden rounded-3xl border-2 border-accent shadow-xl">
+            <div className="portrait-container group">
+              <div className="absolute inset-0 bg-accent/10 dark:bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
               <img
-                src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                src="/assets/portrait.png"
                 alt={`${name}'s professional portrait`}
-                className="w-full h-full object-cover"
+                className="portrait-image"
               />
+              <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_20px_rgba(255,87,34,0.3)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </motion.div>
 
@@ -52,18 +54,21 @@ export function HeroSection() {
             <p className="text-lg mb-8 max-w-xl opacity-80 leading-relaxed">
               {summary}
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="#work"
-                className="px-6 py-3 bg-accent text-white font-medium rounded-md transition-all hover:bg-opacity-90 shadow-lg hover:shadow-xl"
-              >
+            <div className="flex flex-wrap gap-4">
+              <a href="#work" className="btn-primary">
                 View My Work
               </a>
-              <a
-                href="#contact"
-                className="px-6 py-3 border-2 border-accent text-accent font-medium rounded-md transition-all hover:bg-accent hover:bg-opacity-10"
-              >
+              <a href="#contact" className="btn-secondary">
                 Contact Me
+              </a>
+              <a 
+                href="/assets/resume.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary flex items-center gap-2"
+              >
+                <FileText className="h-5 w-5" />
+                My Resume
               </a>
             </div>
             <div className="mt-8 flex items-center space-x-6">
@@ -71,7 +76,7 @@ export function HeroSection() {
                 <a
                   key={link.platform}
                   href={link.url}
-                  className="text-xl hover:text-accent transition-colors"
+                  className="btn-icon"
                   aria-label={link.platform}
                   target="_blank"
                   rel="noopener noreferrer"

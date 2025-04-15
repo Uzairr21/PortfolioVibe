@@ -195,7 +195,7 @@ export function ContactSection() {
                       <a
                         key={link.platform}
                         href={link.url}
-                        className="bg-background w-10 h-10 rounded-full flex items-center justify-center hover:text-accent transition-colors"
+                        className="bg-background w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:text-accent hover:shadow-md hover:shadow-accent/20 hover:scale-110 active:scale-95"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={link.platform}
@@ -288,7 +288,7 @@ export function ContactSection() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-accent hover:bg-accent/90 text-white font-medium"
+                      className="w-full bg-accent hover:bg-accent/90 text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02] active:scale-[0.98]"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}

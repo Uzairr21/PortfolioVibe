@@ -112,4 +112,43 @@
   .transition-theme {
     @apply transition-all duration-300 ease-in-out;
   }
+  
+  /* Enhanced button styles with glow effect */
+  .btn-primary {
+    @apply px-6 py-3 bg-accent text-white font-medium rounded-md transition-all;
+    @apply hover:bg-opacity-90 hover:shadow-lg hover:scale-105;
+    @apply hover:shadow-accent/20 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 border-2 border-accent text-accent font-medium rounded-md transition-all;
+    @apply hover:bg-accent hover:bg-opacity-10 hover:shadow-lg hover:scale-105;
+    @apply hover:shadow-accent/20 active:scale-95;
+  }
+  
+  .btn-icon {
+    @apply transition-all duration-300 hover:scale-110 hover:text-accent;
+    @apply hover:shadow-sm hover:shadow-accent/20 active:scale-95;
+  }
+  
+  /* Portrait styles */
+  .portrait-container {
+    @apply relative overflow-hidden rounded-3xl shadow-xl;
+  }
+  
+  .portrait-container::before {
+    @apply content-[''] absolute inset-0 border-4 border-accent rounded-3xl z-10;
+  }
+  
+  .portrait-container::after {
+    @apply content-[''] absolute -inset-1 bg-accent/20 rounded-3xl blur-md z-0 opacity-0 transition-opacity;
+  }
+  
+  .portrait-container:hover::after {
+    @apply opacity-100;
+  }
+  
+  .portrait-image {
+    @apply relative z-10 w-full h-full object-cover;
+  }
 }

@@ -14,7 +14,7 @@ export function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full transition-colors"
+      className="rounded-full transition-all duration-300 hover:shadow-md hover:shadow-accent/20 hover:scale-105 active:scale-95"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (

@@ -49,19 +49,23 @@ export function ContactSection() {
   async function onSubmit(data: ContactFormValues) {
     setIsSubmitting(true);
     try {
-      await apiRequest("POST", "/api/contact", data);
+      const response = await apiRequest("POST", "/api/contact", data);
       
-      toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
-        variant: "default",
-      });
-      
-      form.reset();
+      if (response.success) {
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+          variant: "default",
+        });
+        form.reset();
+      } else {
+        throw new Error(response.message || 'Failed to send message');
+      }
     } catch (error) {
+      console.error('Contact form submission error:', error);
       toast({
         title: "Something went wrong.",
-        description: "Please try again later.",
+        description: error instanceof Error ? error.message : "Please try again later.",
         variant: "destructive",
       });
     } finally {

@@ -15,7 +15,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="pt-32 pb-24 bg-background min-h-screen flex items-center"
+      className="pt-20 pb-16 bg-background h-[100vh] max-h-[900px] flex items-center"
     >
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center md:space-x-12">
@@ -26,14 +26,24 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="portrait-container group">
-              <div className="absolute inset-0 bg-accent/10 dark:bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"></div>
-              <img
-                src="/assets/portrait.png"
-                alt={`${name}'s professional portrait`}
-                className="portrait-image"
-              />
-              <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_20px_rgba(255,87,34,0.3)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="mx-auto max-w-md relative group">
+              {/* Circular background container with accent/brand color */}
+              <div className="absolute inset-0 rounded-full bg-accent/10 dark:bg-accent/20 transform scale-105"></div>
+              
+              {/* White circular border */}
+              <div className="absolute inset-0 rounded-full border-[6px] border-white dark:border-white/90 transform scale-105"></div>
+              
+              {/* Image container */}
+              <div className="rounded-full overflow-hidden aspect-square flex items-center justify-center bg-background relative z-10">
+                <img
+                  src="/assets/uzair-headshot.png"
+                  alt={`${name}'s professional portrait`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Glow effect on hover */}
+              <div className="absolute -inset-2 rounded-full bg-accent/30 blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-500 z-0"></div>
             </div>
           </motion.div>
 

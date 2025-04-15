@@ -227,7 +227,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const formData = contactFormSchema.parse(req.body);
       
       // Save to database
-      const newMessage = await storage.createMessage(formData);
+      const newMessage = await storage.createMessage({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
+      });
       
       // Return success response
       res.status(200).json({ 
@@ -236,18 +241,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         data: newMessage
       });
     } catch (error) {
+      console.error("Error processing contact form:", error);
+      
       if (error instanceof z.ZodError) {
         return res.status(400).json({ 
           success: false, 
-          message: "Validation error", 
+          message: "Invalid form data", 
           errors: error.errors 
         });
       }
       
-      console.error("Error processing contact form:", error);
       res.status(500).json({ 
         success: false, 
-        message: "Something went wrong. Please try again later." 
+        message: "Database error - please try again later" 
       });
     }
   });

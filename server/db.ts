@@ -1,8 +1,8 @@
-
 import pkg from 'pg';
 const { Pool } = pkg;
 import { drizzle } from 'drizzle-orm/node-postgres';
-import * as schema from "@shared/schema";
+import * as schema from '../shared/schema';
+import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 if (!process.env.DATABASE_URL) {
   throw new Error(
@@ -10,27 +10,29 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Create a new pool using the database URL
+// Create a new pool using the database URL with SSL configuration
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-  max: 20,
+  ssl: {
+    rejectUnauthorized: false
+  },
+  max: 3,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionTimeoutMillis: 5000,
   keepAlive: true,
   keepAliveInitialDelayMillis: 10000
 });
 
 // Add error handler to prevent connection drops
-pool.on('error', (err) => {
+pool.on('error', (err: Error) => {
   console.error('Unexpected error on idle client', err);
 });
 
-export const db = drizzle(pool, { schema });
+export const db: NodePgDatabase<typeof schema> = drizzle(pool, { schema });
 
 // Initialize database tables
-async function initializeDatabase() {
-  let retries = 5;
+async function initializeDatabase(): Promise<void> {
+  let retries = 3;
   while (retries > 0) {
     try {
       // Test the connection first
@@ -50,11 +52,12 @@ async function initializeDatabase() {
       `);
       console.log('Database tables initialized successfully');
       return;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(`Database connection attempt failed (${retries} retries left):`, error);
       retries--;
       if (retries === 0) {
-        throw new Error('Failed to connect to database after multiple attempts');
+        console.error('Failed to connect to database after multiple attempts. Continuing without database...');
+        return;
       }
       // Wait 2 seconds before retrying
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -63,10 +66,23 @@ async function initializeDatabase() {
 }
 
 // Run initialization with better error handling
-initializeDatabase().catch(error => {
+initializeDatabase().catch((error: unknown) => {
   console.error("Database initialization failed:", error);
-  // Don't exit immediately in development to allow for HMR
+  // Don't exit in development to allow for HMR
   if (process.env.NODE_ENV === 'production') {
     process.exit(1);
   }
+});
+
+// Handle graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('Closing database connections...');
+  await pool.end();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  console.log('Closing database connections...');
+  await pool.end();
+  process.exit(0);
 });
